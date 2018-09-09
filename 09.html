@@ -1,28 +1,12 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>mouse move</title>
     <style>
-        body {
-            overflow: hidden;
-            background: papayawhip;
-        }
-
-        #square {
-            width: 20vw;
-            height: 20vw;
-            position: absolute;
-            color: white;
-        }
-
-        div {
-            color: lightblue;
-            background-color: aqua;
-        }
-
-        .red {
+        canvas {
+            
+             border: 1px solid #ccc }
+             .red {
             background: red;
         }
 
@@ -39,7 +23,7 @@
         }
 
         .blue {
-            background: blue;
+            background: grey;
         }
 
         .indigo {
@@ -65,51 +49,58 @@
 </head>
 
 <body>
-    <h2>Flee mouse + change color</h2>
-    <div id="square"> </div>
+    <h2>Paint with the mouse</h2>
+    <canvas id="c" width="700px" height="450px"></canvas>
+    <input type="button" id="clear-btn" value="Clear it" onclick="clearit()">
 
-    <script>
-        window.addEventListener("load", init);
 
-        let square = document.querySelector("#square");
-        let centerX = window.innerWidth / 2; //
-        let centerY = window.innerHeight / 2; //
-        let cx = square.clientWidth / 2; //
-        let cy = square.clientHeight / 2; //
-        let mouseX = 0,
-            mouseY = 0;
-        let xp = centerX,
-            yp = centerY; //   
+    <script type="text/javascript">
+        let el = document.getElementById('c');
+        let ctx = el.getContext('2d');
+        ctx.lineJoin = "round"
+        ctx.strokeStyle = "blue";
+        ctx.globalAlpha = "0.2";
+        ctx.lineWidth = 30;
+        ctx.globalCompositeOperation = "source-over";
 
-        function init() {
-            square.style.left = centerX - cx; //center
-            square.style.top = centerY - cy; //middle
-            document.addEventListener("mousemove", mouseMove);
+        let isDrawing, lastPoint;
+
+        el.onmousedown = function (e) {
+            isDrawing = true;
+            lastPoint = {
+                x: e.clientX,
+                y: e.clientY
+            };
+        };
+
+        el.onmousemove = function (e) {
+            if (!isDrawing) return;
+
+            var currentPoint = {
+                x: e.clientX,
+                y: e.clientY
+            };
+
+            ctx.beginPath();
+            ctx.moveTo(lastPoint.x, lastPoint.y);
+            ctx.lineTo(currentPoint.x, currentPoint.y);
+            ctx.closePath();
+            ctx.stroke();
+
+            lastPoint = currentPoint;
+        };
+
+        el.onmouseup = function () {
+            isDrawing = false;
+        };
+
+        function clearit() {
+            ctx.clearRect(0, 0, 1000, 1000);
         }
 
-        function mouseMove(e) {
-            mouseX = e.pageX;
-            mouseY = e.pageY;
-            xp = centerX - cx + (centerX - mouseX);
-            yp = centerY - cy + (centerY - mouseY);
-            if (xp < 0) {
-                xp = 0;
-            }
-            if (yp < 0) {
-                yp = 0;
-            }
-            if (xp > window.innerWidth - square.clientWidth) {
-                xp = window.innerWidth - square.clientWidth;
-            }
-            if (yp > window.innerHeight - square.clientHeight) {
-                yp = window.innerHeight - square.clientHeight;
-            }
-            square.style.left = xp + "px";
-            square.style.top = yp + "px";
-        }
 
         let clickEx = 0;
-        let ex = document.querySelector("#square");
+        let ex = document.querySelector("#c");
         ex.addEventListener("click", changeColor);
 
         function changeColor() {
@@ -128,8 +119,8 @@
                 console.log("change color to green")
                 ex.classList.toggle("green")
             } else if (clickEx == 5) {
-                console.log("change color to blue")
-                ex.classList.toggle("blue")
+                console.log("change color to grey")
+                ex.classList.toggle("grey")
             } else if (clickEx == 6) {
                 console.log("change color to indigo")
                 ex.classList.toggle("indigo")
