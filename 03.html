@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>mouse move</title>
+    <style>
+        body {
+            overflow: hidden;
+            background: papayawhip;
+        }
+
+        #rod {
+            width: 20vw;
+            height: 20vw;
+            background: red;
+            position: absolute;
+            color: white;
+            transition: background 1s;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .orange {
+            background: orange;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .indigo {
+            background: indigo;
+        }
+
+        .violet {
+            background: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="rod"> </div>
+
+    <script>
+        window.addEventListener("load", init);
+
+        let rod = document.querySelector("#rod");
+
+        function init() {
+            rod.style.visibility = "hidden";
+            document.addEventListener("mousemove", mouseMove)
+        }
+
+        function mouseMove(e) {
+            var elmCX = rod.clientWidth / 2;
+            var elmCY = rod.clientHeight / 2;
+
+            rod.style.visibility = "visible";
+            //console.log(e);
+
+            rod.style.top = e.pageY - elmCY + "px";
+            rod.style.left = e.pageX - elmCX + "px";
+
+            if (e.pageY >= window.innerHeight - elmCY) {
+                rod.style.top = window.innerHeight - rod.clientHeight + "px";
+            }
+            if (e.pageX >= window.innerWidth - elmCX) {
+                rod.style.left = window.innerWidth - rod.clientWidth + "px";
+            }
+            if (e.pageY <= 0 + elmCY) {
+                rod.style.top = 0 + "px";
+            }
+            if (e.pageX <= 0 + elmCX) {
+                rod.style.left = 0 + "px";
+            }
+
+        }
+
+        let clickEx = 0;
+        let colorChange = document.querySelector("#rod");
+        document.addEventListener("click", changeColor);
+
+        function changeColor() {
+            clickEx++;
+            if (clickEx == 1) {
+                console.log("change color to blue")
+                colorChange.classList.toggle("blue")
+            } else if (clickEx == 2) {
+                console.log("change color to orange")
+                colorChange.classList.toggle("orange");
+            } else if (clickEx == 3) {
+                console.log("change color to yellow")
+                colorChange.classList.toggle("yellow")
+            } else if (clickEx == 4) {
+                console.log("change color to green")
+                colorChange.classList.toggle("green")
+            } else if (clickEx == 5) {
+                console.log("change color to blue")
+                colorChange.classList.toggle("blue")
+            } else if (clickEx == 6) {
+                console.log("change color to indigo")
+                colorChange.classList.toggle("indigo")
+            } else if (clickEx == 7) {
+                console.log("change color to violet")
+                colorChange.classList.toggle("violet")
+            }
+
+        }
+    </script>
+</body>
+
+</html>

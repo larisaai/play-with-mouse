@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        margin: 0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#BAFAFF)) fixed;
+
+    }
+
+    #mainTitle {
+        text-align: center;
+    }
+
+
+    /*Navigation/menu*/
+    .nav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #7ebbd4;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .nav a {
+        padding: 10px 10px 6px 26px;
+        text-decoration: none;
+        font-size: 20px;
+        color: black;
+        display: block;
+    }
+
+    .nav a:hover {
+        color: #f1f1f1;
+        text-decoration: underline;
+    }
+
+    .main {
+        margin-left: 160px;
+        /* Same as the width of the sidenav */
+        font-size: 28px;
+        /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+
+    /*Iframe style*/
+    iframe {
+        width: 800px;
+        height: 500px;
+        color: white;
+        background-color: white;
+
+    }
+
+    .containerIframes {
+        position: relative;
+        margin: auto;
+        left: 250px;
+
+    }
+
+    #links {
+        margin: 20px;
+        font-size: 20px;
+        text-decoration: none;
+
+    }
+</style>
+
+<body>
+    <h1 id="mainTitle">Play with mouse</h1>
+    <div class="nav">
+
+        <a href="#IframeBox1">Parallaxing </a>
+        <a href="#IframeBox2">Moving randomly rectangle</a>
+        <a href="#IframeBox3">Cursor and click to change the colour</a>
+        <a href="#IframeBox4">Animated colourfull mouse</a>
+        <a href="#IframeBox5">Animated colourfull mouse centered</a>
+        <a href="#IframeBox6">Project_6</a>
+        <a href="#IframeBox7">Project_7</a>
+        <a href="#IframeBox8">Project_8</a>
+        <a href="#links">Links and connections</a>
+    </div>
+    <div class="containerIframes">
+        <div id="IframeBox1">
+            <h2>Parallaxing</h2>
+            <iframe src="01.html"></iframe>
+        </div>
+
+        <div id="IframeBox2">
+            <h2>Click the rectangle and it moves randomly</h2>
+            <iframe src="02.html"></iframe>
+        </div>
+
+        <div id="IframeBox3">
+            <h2>Use cursor and click to change the colour</h2>
+            <iframe src="03.html"></iframe>
+        </div>
+
+        <div id="IframeBox4">
+            <h2>Animated colourfull mouse-play with it</h2>
+            <iframe src="04.html"></iframe>
+        </div>
+
+
+        <div id="IframeBox5">
+            <h2>Animated colourfull mouse centered</h2>
+            <iframe src="05.html"></iframe>
+        </div>
+
+
+        <div id="IframeBox6">
+            <h2>name of the project</h2>
+            <iframe src=""></iframe>
+        </div>
+
+
+        <div id="IframeBox7">
+            <h2>name of the project</h2>
+            <iframe src=""></iframe>
+        </div>
+
+        <div id="IframeBox8">
+            <h2>name of the project</h2>
+            <iframe src=""></iframe>
+        </div>
+
+        <div id="links">
+            <a href="https://github.com/larisaai/PLAYWITHMOUSE">GitHub repository</a>
+        </div>
+
+
+    </div>
+
+    <script>
+
+
+    </script>
+</body>
+
+</html>

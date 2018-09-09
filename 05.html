@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>mouse move</title>
+    <style>
+        body {
+            overflow: hidden;
+            background: papayawhip;
+        }
+
+        #orange {
+            width: 100px;
+            height: 100px;
+            background: #F49E4C;
+            position: absolute;
+            color: white;
+            z-index: 10;
+        }
+
+        .rectangle {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            position: absolute;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="orange"> </div>
+
+    <script>
+        window.addEventListener("load", init);
+
+        let orange = document.querySelector("#orange");
+
+        function init() {
+            orange.style.visibility = "hidden";
+            document.addEventListener("mousemove", mouseMove)
+        }
+
+        function mouseMove(e) {
+            var elmCX = orange.clientWidth / 2;
+            var elmCY = orange.clientHeight / 2;
+
+            orange.style.visibility = "visible";
+            //console.log(e);
+
+            orange.style.top = e.pageY - elmCY + "px";
+            orange.style.left = e.pageX - elmCX + "px";
+
+            if (e.pageY >= window.innerHeight - elmCY) {
+                orange.style.top = window.innerHeight - orange.clientHeight + "px";
+            }
+            if (e.pageX >= window.innerWidth - elmCX) {
+                orange.style.left = window.innerWidth - orange.clientWidth + "px";
+            }
+            if (e.pageY <= 0 + elmCY) {
+                orange.style.top = 0 + "px";
+            }
+            if (e.pageX <= 0 + elmCX) {
+                orange.style.left = 0 + "px";
+            }
+
+
+
+            document.onmousemove = animateRectangle; // rectangle follow mouse
+
+            let colors = ['#6A48AF', '#FFBAD5', '#f1c40f']
+
+            function animateRectangle(event) {
+                let rectangle = document.createElement("div");
+                rectangle.setAttribute("class", "rectangle");
+                document.body.appendChild(rectangle); // adds function to body
+
+                // adds motion
+                rectangle.style.left = event.clientX - elmCX + 'px';
+                rectangle.style.top = event.clientY - elmCY + 'px';
+
+                // randomize color
+                var color = colors[Math.floor(Math.random() * colors.length)];
+                rectangle.style.borderColor = color;
+
+                // adds animation
+                rectangle.style.transition = "all 0.5s linear 0s";
+
+                rectangle.style.left = rectangle.offsetLeft - 20 + 'px';
+                rectangle.style.top = rectangle.offsetTop - 20 + 'px';
+
+                rectangle.style.width = "50px";
+                rectangle.style.height = "50px";
+                rectangle.style.borderWidth = "5px";
+                rectangle.style.opacity = 0;
+            }
+        }
+    </script>
+</body>
+
+</html>

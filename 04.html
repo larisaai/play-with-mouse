@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>mouse move</title>
+    <style>
+        body {
+            overflow: hidden;
+            background: papayawhip;
+        }
+
+        #blue {
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+            position: absolute;
+            color: white;
+            z-index: 10;
+        }
+
+        .rectangle {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            position: absolute;
+            z-index: 1;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="blue"> </div>
+
+    <script>
+        window.addEventListener("load", init);
+
+        let blue = document.querySelector("#blue");
+
+        function init() {
+            blue.style.visibility = "hidden";
+            document.addEventListener("mousemove", mouseMove)
+        }
+
+        function mouseMove(e) {
+            blue.style.visibility = "visible";
+            console.log(e);
+            blue.style.whiteSpace = "pre";
+            blue.style.top = e.pageY + "px";
+            blue.style.left = e.pageX + "px";
+        }
+        document.onmousemove = animateRectangle; // rectangle follow mouse
+
+        let colors = ['#1abc9c', '#3498db', '#f1c40f']
+
+        function animateRectangle(event) {
+            let rectangle = document.createElement("div");
+            rectangle.setAttribute("class", "rectangle");
+            document.body.appendChild(rectangle); // adds function to body
+
+            // adds motion
+            rectangle.style.left = event.clientX + 'px';
+            rectangle.style.top = event.clientY + 'px';
+
+            // randomize color
+            var color = colors[Math.floor(Math.random() * colors.length)];
+            rectangle.style.borderColor = color;
+
+            // adds animation
+            rectangle.style.transition = "all 0.5s linear 0s";
+
+            rectangle.style.left = rectangle.offsetLeft - 20 + 'px';
+            rectangle.style.top = rectangle.offsetTop - 20 + 'px';
+
+            rectangle.style.width = "50px";
+            rectangle.style.height = "50px";
+            rectangle.style.borderWidth = "5px";
+            rectangle.style.opacity = 0;
+        }
+    </script>
+</body>
+
+</html>

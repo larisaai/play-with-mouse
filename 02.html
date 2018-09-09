@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+</head>
+<style>
+    .rectangle {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+        cursor: pointer;
+        position: absolute;
+        transition: all 1s;
+        display: block;
+
+    }
+</style>
+
+<body>
+    <div class="rectangle"></div>
+</body>
+
+
+
+<script>
+    let rectangle = document.querySelector(".rectangle");
+
+    rectangle.addEventListener("click", swapimage);
+    console.log("working");
+
+    function swapimage() {
+        let leftPos = Math.floor(Math.random() * 300);
+        let topPos = Math.floor(Math.random() * 300);
+        rectangle.style.transform = "translate(" + leftPos + "px, " + topPos + "px)";
+
+
+    }
+</script>
+
+</html>
