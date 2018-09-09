@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>mouse move</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        div {
+            width: calc(120vw*2);
+            height: calc(86vw*2);
+            position: absolute;
+            background-image: url(1.jpg);
+            background-size: cover;
+        }
+
+        .pic2 {
+            width: calc(120vw*2);
+            height: calc(86vw*2);
+            position: absolute;
+            background-image: url(2.jpg);
+            background-size: cover;
+        }
+
+        .pic3 {
+            width: calc(120vw*2);
+            height: calc(86vw*2);
+            position: absolute;
+            background-image: url(3.jpg);
+            background-size: cover;
+        }
+
+        .pic1 {
+            width: calc(120vw*2);
+            height: calc(86vw*2);
+            position: absolute;
+            background-image: url(1.jpg);
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="picture"> </div>
+
+    <script>
+        window.addEventListener("load", init);
+
+        let picture = document.querySelector("#picture");
+        let centerX = window.innerWidth / 2; //
+        let centerY = window.innerHeight / 2; //
+        let cx = picture.clientWidth / 2; //
+        let cy = picture.clientHeight / 2; //
+        let mouseX = 0,
+            mouseY = 0;
+        let xp = centerX,
+            yp = centerY; //   
+
+        function init() {
+            picture.style.left = centerX - cx; //center
+            picture.style.top = centerY - cy; //middle
+            document.addEventListener("mousemove", mouseMove);
+        }
+
+        function mouseMove(e) {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+
+            xp = ((window.innerWidth - mouseX) / window.innerWidth) * (window.innerWidth - picture.clientWidth);
+            yp = ((window.innerHeight - mouseY) / window.innerHeight) * (window.innerHeight - picture.clientHeight);
+
+
+
+            picture.style.left = xp + "px";
+            picture.style.top = yp + "px";
+        }
+
+        let clickEx = 0;
+        let ex = document.querySelector("#picture");
+        ex.addEventListener("click", changeColor);
+
+        function changeColor() {
+            clickEx++;
+            if (clickEx === 1) {
+                ex.classList.toggle("pic2")
+            } else if (clickEx === 2) {
+                ex.classList.toggle("pic3")
+            } else if (clickEx === 3) {
+                ex.classList.toggle("pic1")
+            } else if (clickEx === 4) {
+                ex.classList.toggle("pic2")
+            } else if (clickEx === 5) {
+                ex.classList.toggle("pic3")
+            } else if (clickEx === 6) {
+                ex.classList.toggle("pic1")
+            } else if (clickEx === 7) {
+                ex.classList.toggle("pic2")
+            } else if (clickEx === 8) {
+                ex.classList.toggle("pic3")
+            }
+        }
+    </script>
+</body>
+
+</html>

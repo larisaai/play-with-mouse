@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>mouse move</title>
+    <style>
+        body {
+            overflow: hidden;
+            background: papayawhip;
+        }
+
+        #square {
+            width: 20vw;
+            height: 20vw;
+            position: absolute;
+            color: white;
+        }
+
+        div {
+            color: lightblue;
+            background-color: aqua;
+        }
+
+        .red {
+            background: red;
+        }
+
+        .orange {
+            background: orange;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        .indigo {
+            background: indigo;
+        }
+
+        .violet {
+            background: violet;
+        }
+
+        .dark {
+            background: black;
+        }
+
+        .white {
+            background: white;
+        }
+
+        .brown {
+            background: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="square"> </div>
+
+    <script>
+        window.addEventListener("load", init);
+
+        let square = document.querySelector("#square");
+        let centerX = window.innerWidth / 2; //
+        let centerY = window.innerHeight / 2; //
+        let cx = square.clientWidth / 2; //
+        let cy = square.clientHeight / 2; //
+        let mouseX = 0,
+            mouseY = 0;
+        let xp = centerX,
+            yp = centerY; //   
+
+        function init() {
+            square.style.left = centerX - cx; //center
+            square.style.top = centerY - cy; //middle
+            document.addEventListener("mousemove", mouseMove);
+        }
+
+        function mouseMove(e) {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+            xp = centerX - cx + (centerX - mouseX);
+            yp = centerY - cy + (centerY - mouseY);
+            if (xp < 0) {
+                xp = 0;
+            }
+            if (yp < 0) {
+                yp = 0;
+            }
+            if (xp > window.innerWidth - square.clientWidth) {
+                xp = window.innerWidth - square.clientWidth;
+            }
+            if (yp > window.innerHeight - square.clientHeight) {
+                yp = window.innerHeight - square.clientHeight;
+            }
+            square.style.left = xp + "px";
+            square.style.top = yp + "px";
+        }
+
+        let clickEx = 0;
+        let ex = document.querySelector("#square");
+        ex.addEventListener("click", changeColor);
+
+        function changeColor() {
+            clickEx++;
+            if (clickEx == 1) {
+                console.log("change color to red")
+                ex.classList.toggle("red")
+            } else if (clickEx == 2) {
+                console.log("change color to orange")
+                ex.classList.toggle("orange")
+                clickEx == 0;
+            } else if (clickEx == 3) {
+                console.log("change color to yellow")
+                ex.classList.toggle("yellow")
+            } else if (clickEx == 4) {
+                console.log("change color to green")
+                ex.classList.toggle("green")
+            } else if (clickEx == 5) {
+                console.log("change color to blue")
+                ex.classList.toggle("blue")
+            } else if (clickEx == 6) {
+                console.log("change color to indigo")
+                ex.classList.toggle("indigo")
+            } else if (clickEx == 7) {
+                console.log("change color to violet")
+                ex.classList.toggle("violet")
+            } else if (clickEx == 8) {
+                console.log("change color to dark")
+                ex.classList.toggle("dark")
+            } else if (clickEx == 9) {
+                console.log("change color to white")
+                ex.classList.toggle("white")
+            } else if (clickEx == 10) {
+                console.log("change color to brown")
+                ex.classList.toggle("brown")
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
